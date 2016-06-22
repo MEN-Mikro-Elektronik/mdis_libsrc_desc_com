@@ -561,6 +561,7 @@ char    *keyFmt,
         else
         {
             /* default array */
+        	*lenP = strlen(defVal); /* klocwork id703 */
             OSS_MemCopy( descIntHdl->osHdl, *lenP, (char*) defVal, (char*) bufP );
 			DBGWRT_2((DBH," '%s' (default)\n",bufP));
         }/*if*/
