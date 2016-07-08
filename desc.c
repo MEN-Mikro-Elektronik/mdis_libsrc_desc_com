@@ -124,14 +124,6 @@ static const char RCSid[]="$Id: desc.c,v 1.16 2010/09/02 15:15:08 UFranke Exp $"
 /*-----------------------------------------+
 |  TYPEDEFS                                |
 +------------------------------------------*/
-/* internal descriptor handle */
-typedef struct {
-   u_int32     OwnMemSize;
-   OSS_HANDLE  *osHdl;				/* oss handle */
-   DBG_HANDLE  *dbgHdl;				/* debug handle */
-   u_int32     dbgLev;				/* debug level */
-   void        *descStructP;		/* ptr to descr data */
-} DESC_INT_HDL;
 
 /*-----------------------------------------+
 |  DEFINES & CONST                         |
