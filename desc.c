@@ -116,6 +116,7 @@ static const char RCSid[]="$Id: desc.c,v 1.16 2010/09/02 15:15:08 UFranke Exp $"
 
 #include <MEN/desctyps.h>
 #include <MEN/desc.h>
+#include <string.h>
 
 /* pass debug definitions to dbg.h */
 #define DBG_MYLEVEL		descIntHdl->dbgLev
