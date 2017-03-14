@@ -15,16 +15,16 @@
  *               INCLUDE_MIPIOS_VX
  *
  *---------------------------[ Public Functions ]----------------------------
- *  
- *  DESC_Ident             Gets the pointer to ident string. 
- *  DESC_Init              Get handle to access descriptor 
- *  DESC_Exit              Terminate use of descriptor handle 
- *  DESC_GetUInt32         Get descriptor entry of type "U_INT32" 
- *  DESC_GetBinary         Get descriptor entry of type "BINARY" 
- *  DESC_GetString         Get descriptor entry of type "STRING" 
- *  DESC_DbgLevelSet       Sets the debug level of this module. 
- *  DESC_DbgLevelGet       Gets the debug level of this module. 
- *  
+ *
+ *  DESC_Ident             Gets the pointer to ident string.
+ *  DESC_Init              Get handle to access descriptor
+ *  DESC_Exit              Terminate use of descriptor handle
+ *  DESC_GetUInt32         Get descriptor entry of type "U_INT32"
+ *  DESC_GetBinary         Get descriptor entry of type "BINARY"
+ *  DESC_GetString         Get descriptor entry of type "STRING"
+ *  DESC_DbgLevelSet       Sets the debug level of this module.
+ *  DESC_DbgLevelGet       Gets the debug level of this module.
+ *
  *-------------------------------[ History ]---------------------------------
  *
  * $Log: desc.c,v $
@@ -207,12 +207,12 @@ DESC_HANDLE **descHandleP
     DESC_INT_HDL *descIntHdl = NULL;
 
 	/* first byte of word must be 0x6d */
-	if( (*(u_int16*)descSpec & 0xff00) != 0x6d00 ) 
+	if( (*(u_int16*)descSpec & 0xff00) != 0x6d00 )
        return( ERR_DESC_CORRUPTED );
-	
+
 
 	/* allocate handle */
-    descIntHdl = (DESC_INT_HDL*) OSS_MemGet( osHdl, 
+    descIntHdl = (DESC_INT_HDL*) OSS_MemGet( osHdl,
 											 sizeof(DESC_INT_HDL),
                                              &gotsize );
     *descHandleP = (DESC_HANDLE*) descIntHdl;
@@ -256,8 +256,7 @@ int32 DESC_Exit( DESC_HANDLE **descHandleP )
     DBGWRT_1((DBH,"DESC - DESC_Exit\n"));
 	DBGEXIT((&DBH));
 
-    if( OSS_MemFree( descIntHdl->osHdl, (int8*) descIntHdl, 
-					descIntHdl->OwnMemSize ))
+    if( OSS_MemFree( descIntHdl->osHdl, (int8*) descIntHdl,	descIntHdl->OwnMemSize ))
         return( ERR_OSS_MEM_FREE );
 
    *descHandleP = 0;
@@ -283,18 +282,18 @@ int32 DESC_Exit( DESC_HANDLE **descHandleP )
 		u_int32 size = 0;
 	    DESC_INT_HDL  *descIntHdl = (DESC_INT_HDL*) descHandle;
 	    u_int16 *tagP = NULL;
-	
+
 		if(	descHandle == NULL || descSizeP == NULL )
 		{
 			goto CLEANUP;
 		}
-	
+
 	    error = GetTag( descIntHdl, DESC_U_INT32, &tagP, "we_dont_want_to_find_this_key_to_go_until_end_of_descriptor__", &size );
 	    if( error == ERR_DESC_KEY_NOTFOUND )
 	    {
 	    	error = 0;
 		}
-	
+
 	CLEANUP:
 		if( error )
 		{
@@ -377,6 +376,7 @@ char        *keyFmt,
 			DBGWRT_2((DBH," 0x%08x (default)\n",*valueP));
         }/*if*/
         OSS_MemFree( descIntHdl->osHdl, keyString, gotSize );
+        keyString = NULL;
     }
 
     return( retVal );
@@ -458,6 +458,7 @@ int32 DESC_GetBinary
             if( *lenP < arrLen )
             {
                 OSS_MemFree( descIntHdl->osHdl, keyString, gotSize );
+                keyString = NULL;
                 return( ERR_DESC_BUF_TOOSMALL );
             }/*if*/
 
@@ -475,6 +476,7 @@ int32 DESC_GetBinary
         }/*if*/
 
         OSS_MemFree( descIntHdl->osHdl, keyString, gotSize );
+        keyString = NULL;
     }
 
     return( retVal );
@@ -549,6 +551,7 @@ char    *keyFmt,
             if( *lenP < arrLen )
             {
                 OSS_MemFree( descIntHdl->osHdl, keyString, gotSize );
+                keyString = NULL;
                 return( ERR_DESC_BUF_TOOSMALL );
             }/*if*/
 
@@ -565,6 +568,7 @@ char    *keyFmt,
 			DBGWRT_2((DBH," '%s' (default)\n",bufP));
         }/*if*/
         OSS_MemFree( descIntHdl->osHdl, keyString, gotSize );
+        keyString = NULL;
     }
 
     return( retVal );
@@ -772,9 +776,9 @@ static int32 GetTag				/* nodoc */
         {
             lenP = ( tagP + 1 );
             /* minimal version - looks not for directory entrys matching */
-            if( *tagP == tagKind 
-                && nbrOfDirsMatching == nbrOfDirsMustMatch 
-                && dirLevel == nbrOfDirsMustMatch 
+            if( *tagP == tagKind
+                && nbrOfDirsMatching == nbrOfDirsMustMatch
+                && dirLevel == nbrOfDirsMustMatch
               )
             {
                 name  = (char*) tagP;
@@ -804,7 +808,7 @@ static int32 GetTag				/* nodoc */
 	    	u_int32 size;
 			/*
 				The end tag of a descriptor looks like:
-	
+
 				...
 		    	struct {
 	    	    	u_int16 __typ, __len;
@@ -818,7 +822,7 @@ static int32 GetTag				/* nodoc */
 
 	    	*descSizeP = size;
     	}
-    	
+
         return( ERR_DESC_KEY_NOTFOUND );
     }
     else
