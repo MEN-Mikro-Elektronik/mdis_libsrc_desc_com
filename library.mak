@@ -8,18 +8,8 @@
 #    Description: makefile descriptor file for common
 #                 modules MDIS 4.0   e.g. low level driver
 #                      
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: library.mak,v $
-#   Revision 1.1  1998/03/10 12:21:28  franke
-#   Added by mcvs
-#
-#   Revision 1.1  1998/02/04 16:07:16  uf
-#   initial
-#
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 1997 by MEN mikro elektronik GmbH, Nuernberg, Germany 
+#   Copyright (c) 1997-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
