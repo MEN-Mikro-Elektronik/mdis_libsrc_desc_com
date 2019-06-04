@@ -1,12 +1,9 @@
 #***************************  M a k e f i l e  *******************************
 #  
-#        $Author: franke $
-#          $Date: 1998/03/10 12:21:28 $
-#      $Revision: 1.1 $
-#        $Header: /dd2/CVSR/COM/LIBSRC/DESC/COM/library.mak,v 1.1 1998/03/10 12:21:28 franke Exp $
+#        Author: franke 
 #                      
 #    Description: makefile descriptor file for common
-#                 modules MDIS 4.0   e.g. low level driver
+#                 modules  e.g. low level driver
 #                      
 #-----------------------------------------------------------------------------
 #   Copyright (c) 1997-2019, MEN Mikro Elektronik GmbH
@@ -26,6 +23,11 @@
 
 
 MAK_NAME=desc
+# the next line is updated during the MDIS installation
+STAMPED_REVISION="mdis_libsrc_desc_com_01_45-0-g192f923-dirty_2019-02-21"
+
+DEF_REVISION=MAK_REVISION=$(STAMPED_REVISION)
+MAK_SWITCH=$(SW_PREFIX)$(DEF_REVISION)
 
 MAK_LIBS=
 

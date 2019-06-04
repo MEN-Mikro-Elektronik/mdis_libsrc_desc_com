@@ -3,9 +3,7 @@
  *         Name: desc.c
  *      Project: mdis 4.0 / ll-driver / bbis
  *
- *      $Author: UFranke $
- *        $Date: 2010/09/02 15:15:08 $
- *    $Revision: 1.16 $
+ *      Author: UFranke 
  *
  *  Description: Descriptor decoder functions
  *               (for c-struct and binary descriptors)
@@ -43,7 +41,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-static const char RCSid[]="$Id: desc.c,v 1.16 2010/09/02 15:15:08 UFranke Exp $";
 
 #include <MEN/men_typs.h>         /* men type definitions */
 #include <MEN/mdis_err.h>
@@ -62,6 +59,8 @@ static const char RCSid[]="$Id: desc.c,v 1.16 2010/09/02 15:15:08 UFranke Exp $"
 /* pass debug definitions to dbg.h */
 #define DBG_MYLEVEL		descIntHdl->dbgLev
 #include <MEN/dbg.h>
+
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 
 /*-----------------------------------------+
 |  TYPEDEFS                                |
@@ -114,7 +113,7 @@ static int32 GetTag
  ****************************************************************************/
 char* DESC_Ident( void )
 {
-	return("DESC - Descriptor Decoder: $Id: desc.c,v 1.16 2010/09/02 15:15:08 UFranke Exp $");
+	return( (char*) IdentString );
 }/*DESC_Ident*/
 
 
